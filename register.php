@@ -1,4 +1,53 @@
+<?php
+
+function sanitizeFormUsername($inputText) {
+    $inputText = strip_tags($inputText);
+    $inputText = str_replace(" ", "", $inputText);
+    return $inputText;
+}
+function sanitizeFormString($inputText) {
+    $inputText = strip_tags($inputText);
+    $inputText = str_replace(" ", "", $inputText);
+    $inputText = ucfirst(strtolower($inputText));
+    return $inputText;
+}
+
+function sanitizeFormPassword($inputText) {
+    $inputText = strip_tags($inputText);
+    return $inputText;
+}
+
+if(isset($_POST['loginButton'])) {
+    //Login button was pressed
+    echo "login button was pressed";
+}
+
+if(isset($_POST['registerButton'])) {
+    //Register button was pressed
+    $username = sanitizeFormUsername($_POST['username']);
+
+    $firstName = sanitizeFormString($_POST['firstName']);
+    
+    $lastName = sanitizeFormString($_POST['lastName']);
+
+    $email = sanitizeFormString($_POST['email']);
+    
+    $confirmEmail = sanitizeFormString($_POST['confirmEmail']);
+
+    $password = sanitizeFormPassword($_POST['password']);
+    
+    $confirmPassword = sanitizeFormPassword($_POST['confirmPassword']);
+
+    
+}
+
+
+?>
+
+
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -53,13 +102,13 @@
             
             <p>
                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" placeholder="Your Password" required>
             </p>
             <p>
                <label for="confirmPassword">Confirm Password</label>
-                <input type="confirmPassword" id="confirmPassword" name="confirmPassword" required>
+                <input type="confirmPassword" id="confirmPassword" name="confirmPassword" placeholder="Your Password" required>
             </p>
-            <button type="submit" name="loginButton">LOG IN</button>
+            <button type="submit" name="registerButton">SIGN UP</button>
             
             
         </form>
